@@ -14,12 +14,15 @@ namespace CryptoScanner.DAL.Migrations
                 name: "Cryptos",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Usd_Price = table.Column<double>(type: "float", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Price_In_Usd = table.Column<double>(type: "float", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Usd_Market_Cap = table.Column<double>(type: "float", nullable: false),
                     Usd_24H_Vhl = table.Column<double>(type: "float", nullable: false),
-                    Usd_24H_Change = table.Column<double>(type: "float", nullable: false)
+                    Usd_24H_Change = table.Column<double>(type: "float", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Ath = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {

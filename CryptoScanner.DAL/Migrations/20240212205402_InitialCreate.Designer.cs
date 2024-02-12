@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CryptoScanner.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240212145850_InitialCreate")]
+    [Migration("20240212205402_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -26,12 +26,24 @@ namespace CryptoScanner.DAL.Migrations
 
             modelBuilder.Entity("CryptoScanner.DAL.Models.CryptoModel", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<double>("Ath")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Price_In_Usd")
+                        .HasColumnType("float");
 
                     b.Property<double>("Usd_24H_Change")
                         .HasColumnType("float");
@@ -40,9 +52,6 @@ namespace CryptoScanner.DAL.Migrations
                         .HasColumnType("float");
 
                     b.Property<double>("Usd_Market_Cap")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Usd_Price")
                         .HasColumnType("float");
 
                     b.HasKey("Id");

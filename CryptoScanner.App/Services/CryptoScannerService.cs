@@ -1,11 +1,6 @@
 ﻿using CryptoScanner.DAL.Database;
 using CryptoScanner.DAL.Models;
 using CryptoScanner.DAL.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CryptoScanner.App.Services
 {
@@ -19,9 +14,9 @@ namespace CryptoScanner.App.Services
 
         }
 
-        public async Task<List<CryptoModel>> GetAllCryptoAsync()
+        public async Task<List<CryptoModel>> GetAllCryptosAsync()
         {
-            return await cryptoRepo.GetAllAsync();   
+            return await cryptoRepo.GetAllCryptosAsync();
 
         }
 
