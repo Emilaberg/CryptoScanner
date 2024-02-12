@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoScanner.UI", "CryptoScanner.UI\CryptoScanner.UI.csproj", "{0D825849-5E18-435D-8912-6C6BCE2027C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoScanner.UI", "CryptoScanner.UI\CryptoScanner.UI.csproj", "{0D825849-5E18-435D-8912-6C6BCE2027C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoScanner.App", "CryptoScanner.App\CryptoScanner.App.csproj", "{9A90E5AE-BBF2-42A5-AC4C-0F090A35A34B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoScanner.App", "CryptoScanner.App\CryptoScanner.App.csproj", "{9A90E5AE-BBF2-42A5-AC4C-0F090A35A34B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoScanner.DAL", "CryptoScanner.DAL\CryptoScanner.DAL.csproj", "{C050F272-9141-470B-94AE-828B6909A8D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoScanner.DAL", "CryptoScanner.DAL\CryptoScanner.DAL.csproj", "{C050F272-9141-470B-94AE-828B6909A8D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
