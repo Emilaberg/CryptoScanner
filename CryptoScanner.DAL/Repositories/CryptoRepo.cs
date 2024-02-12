@@ -1,7 +1,83 @@
-﻿namespace CryptoScanner.DAL.Repositories
+﻿using CryptoScanner.DAL.Database;
+using CryptoScanner.DAL.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace CryptoScanner.DAL.Repositories
 {
     public class CryptoRepo
     {
+        private readonly AppDbContext context;
+        public CryptoRepo(AppDbContext context)
+        {
+            this.context = context;
+        }
 
+        public async Task<CryptoModel> GetCryptoByIdAsync(int id)
+        {
+            CryptoModel? crypto = await context.Cryptos.FirstOrDefaultAsync(c => c.Id == id);
+            if (crypto == null)
+            {
+                throw new NullReferenceException(nameof(crypto));
+            }
+
+            return crypto;
+        }
+
+        public async Task<List<CryptoModel>> GetAllCryptosAsync()
+        {
+            return await context.Cryptos.ToListAsync();
+        }
+
+        public async Task<CryptoModel> AddCryptoAsync(CryptoModel crypto)
+        {
+            if (crypto == null)
+            {
+                throw new NullReferenceException();
+            }
+
+            context.Cryptos.Add(crypto);
+            await context.SaveChangesAsync();
+            return crypto;
+
+        }
+
+        public async Task<CryptoModel> UpdateCryptoAsync(CryptoModel updatedCrypto)
+        {
+            CryptoModel cryptoToUpdate = await GetCryptoByIdAsync(updatedCrypto.Id);
+
+            if (cryptoToUpdate == null)
+            {
+                throw new NullReferenceException();
+            }
+
+            cryptoToUpdate.Name = updatedCrypto.Name;
+            cryptoToUpdate.Description = updatedCrypto.Description;
+            cryptoToUpdate.Usd_Market_Cap = updatedCrypto.Usd_Market_Cap;
+            cryptoToUpdate.Ath = updatedCrypto.Ath;
+            cryptoToUpdate.Usd_24H_Vhl = updatedCrypto.Usd_24H_Vhl;
+            cryptoToUpdate.Usd_24H_Change = updatedCrypto.Usd_24H_Change;
+            cryptoToUpdate.Price_In_Usd = updatedCrypto.Price_In_Usd;
+
+            await context.SaveChangesAsync();
+
+            return cryptoToUpdate;
+
+
+        }
+
+        public async Task<string> DeleteCryptoAsync(CryptoModel crypto)
+        {
+            CryptoModel cryptoToDelete = await GetCryptoByIdAsync(crypto.Id);
+
+            if (cryptoToDelete == null)
+            {
+                throw new NullReferenceException();
+            }
+
+            context.Cryptos.Remove(cryptoToDelete);
+            await context.SaveChangesAsync();
+            return "Crypto deleted successfully";
+
+        }
     }
 }
