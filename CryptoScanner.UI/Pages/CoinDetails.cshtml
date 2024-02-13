@@ -1,0 +1,24 @@
+﻿@page
+@model CryptoScanner.UI.Pages.CoinDetailsModel
+@{
+}
+<form method="post">
+
+    <input type="submit" asp-for="@Model.Crypto" class="btn btn-danger" value="Save"/>
+
+</form>
+
+<div class="col-3 justify-content-center mt-4">
+    <div class="card shadow" style="width: 100%;">
+        <img class="card-img-top" src="@Model.Crypto.image.Large" alt="Card image cap">
+        <div class="card-body">
+                <h1>@Model.Crypto.Name</h1>
+                <h3 class="fw-normal fst-italic"><span class="fw-bold">S</span>@Model.Crypto.Symbol</h3>
+            <h3 class="fw-normal fst-italic"><span class="fw-bold">S</span>@Model.Crypto.Market_cap_rank
+            </h3>
+        </div>
+    </div>
+    
+
+
+</div>

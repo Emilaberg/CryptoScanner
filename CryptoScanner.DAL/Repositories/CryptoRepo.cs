@@ -52,10 +52,10 @@ namespace CryptoScanner.DAL.Repositories
 
             cryptoToUpdate.Name = updatedCrypto.Name;
             cryptoToUpdate.Description = updatedCrypto.Description;
-            cryptoToUpdate.Usd_Market_Cap = updatedCrypto.Usd_Market_Cap;
+            cryptoToUpdate.Market_Cap_Rank = updatedCrypto.Market_Cap_Rank;
             cryptoToUpdate.Ath = updatedCrypto.Ath;
-            cryptoToUpdate.Usd_24H_Vhl = updatedCrypto.Usd_24H_Vhl;
-            cryptoToUpdate.Usd_24H_Change = updatedCrypto.Usd_24H_Change;
+            cryptoToUpdate.Usd_High_24H = updatedCrypto.Usd_High_24H;
+            cryptoToUpdate.Usd_Low_24H = updatedCrypto.Usd_Low_24H;
             cryptoToUpdate.Price_In_Usd = updatedCrypto.Price_In_Usd;
 
             await context.SaveChangesAsync();

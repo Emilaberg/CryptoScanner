@@ -4,7 +4,19 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container row">
+    @foreach (var crypto in Enum.GetValues(typeof(CryptoScanner.UI.Pages.IndexModel.CryptoType)))
+    {
+        <div class="col-3 justify-content-center mt-4">
+            <div class="card shadow" style="width: 100%;">
+                <div class="card-body">
+                    <h1>@crypto</h1>
+                    <a asp-page="CoinDetails" asp-route-name="@crypto.ToString().ToLower()">
+                        <img class="card-img-top" src="~/images/@(crypto.ToString()).jpg" alt="Card image cap">
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    }
 </div>
