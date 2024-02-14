@@ -14,13 +14,7 @@ namespace CryptoScanner.DAL.Repositories
 
         public async Task<CryptoModel> GetCryptoByIdAsync(int id)
         {
-            CryptoModel? crypto = await context.Cryptos.FirstOrDefaultAsync(c => c.Id == id);
-            if (crypto == null)
-            {
-                throw new NullReferenceException(nameof(crypto));
-            }
-
-            return crypto;
+            return await context.Cryptos.FirstOrDefaultAsync(c => c.Id == id);
         }
 
         public async Task<List<CryptoModel>> GetAllCryptosAsync()
