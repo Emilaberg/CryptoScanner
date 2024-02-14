@@ -32,13 +32,6 @@ namespace CryptoScanner.App.Services
 
         public async Task<string?> AddCryptoToDb(CryptoModel newCrypto)
         {
-            CryptoModel? exits = await GetCryptoByNameAsync(newCrypto.Name);
-
-
-            if (exits != null)
-            {
-                return null;
-            }
             await cryptoRepo.AddCryptoAsync(newCrypto);
             return "success";
         }
