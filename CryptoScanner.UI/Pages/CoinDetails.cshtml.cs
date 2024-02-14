@@ -73,14 +73,15 @@ namespace CryptoScanner.UI.Pages
 
 
 
-            if (await scanner.AddCryptoToDb(newCrypto) == null)
+            if (await scanner.GetCryptoByNameAsync(newCrypto.Name) == null)
             {
-                return Page();
+                await scanner.AddCryptoToDb(newCrypto);
+                return RedirectToPage("/index");
+
             }
             else
             {
-                return RedirectToPage("/index");
-
+                return Page();
             }
 
 
