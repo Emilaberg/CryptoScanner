@@ -20,11 +20,35 @@ namespace CryptoScanner.UI.Pages
         }
 
         [BindProperty]
-        public Root? Crypto { get; set; }
+        public double? Price_In_Usd { get; set; }
+        [BindProperty]
+        public string? Name { get; set; }
+        [BindProperty]
+        public double? Market_Cap_Rank { get; set; }
+        [BindProperty]
+        public double? Usd_High_24H { get; set; }
+        [BindProperty]
+        public double? Usd_Low_24H { get; set; }
+        [BindProperty]
+        public string? Description { get; set; }
+        [BindProperty]
+        public double? Ath { get; set; }
 
         public async Task OnGetAsync(string name)
         {
-            Crypto = await new ApiCaller().MakeCallByCryptoName(name);
+
+            Root Crypto = await new ApiCaller().MakeCallByCryptoName(name);
+
+            Price_In_Usd = Crypto.market_data.Current_price.Usd;
+            Name = Crypto.Name;
+            Market_Cap_Rank = Crypto.Market_cap_rank;
+            Usd_High_24H = Crypto.market_data.High_24h.Usd;
+            Usd_Low_24H = Crypto.market_data.Low_24h.Usd;
+            Description = Crypto.Description.En;
+            Ath = Crypto.market_data.Ath.Usd;
+
+
+
 
         }
 
@@ -32,15 +56,16 @@ namespace CryptoScanner.UI.Pages
         public async Task<IActionResult> OnPost()
         {
 
+
             CryptoModel newCrypto = new CryptoModel
             {
-                Price_In_Usd = Crypto.market_data.Current_price.Usd,
-                Name = Crypto.Name,
-                Market_Cap_Rank = Crypto.Market_cap_rank,
-                Usd_High_24H = Crypto.market_data.High_24h.Usd,
-                Usd_Low_24H = Crypto.market_data.Low_24h.Usd,
-                Description = Crypto.Description.En,
-                Ath = Crypto.market_data.Ath.Usd,
+                Price_In_Usd = Price_In_Usd,
+                Name = Name,
+                Market_Cap_Rank = Market_Cap_Rank,
+                Usd_High_24H = Usd_High_24H,
+                Usd_Low_24H = Usd_Low_24H,
+                Description = Description,
+                Ath = Ath,
             };
 
             CryptoScannerService scanner = new(_Context);
@@ -55,10 +80,10 @@ namespace CryptoScanner.UI.Pages
 
             return Page();
 
-        }
-        //public async Task GetCrypto()
-        //{
+            //}
+            //public async Task GetCrypto()
+            //{
 
-        //}
+        }
     }
 }

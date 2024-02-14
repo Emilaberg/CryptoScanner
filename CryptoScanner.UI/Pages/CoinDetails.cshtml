@@ -4,21 +4,30 @@
 }
 <form method="post">
 
-    <input type="submit" asp-for="@Model.Crypto" class="btn btn-danger" value="Save"/>
+   
 
-</form>
-
-<div class="col-3 justify-content-center mt-4">
-    <div class="card shadow" style="width: 100%;">
-        <img class="card-img-top" src="@Model.Crypto.image.Large" alt="Card image cap">
-        <div class="card-body">
-                <h1>@Model.Crypto.Name</h1>
-                <h3 class="fw-normal fst-italic"><span class="fw-bold">S</span>@Model.Crypto.Symbol</h3>
-            <h3 class="fw-normal fst-italic"><span class="fw-bold">S</span>@Model.Crypto.Market_cap_rank
-            </h3>
+    <div class="col-3 justify-content-center mt-4">
+        <div class="card shadow" style="width: 100%;">
+            <img class="card-img-top" src="" alt="Card image cap">
+            <div class="card-body">
+                <h1></h1>
+                <h3 class="fw-normal fst-italic"><span class="fw-bold">symbol: </span>@Model.Ath</h3>
+                <input hidden asp-for="@Model.Ath"/>
+                <h3 class="fw-normal fst-italic"><span class="fw-bold">Market Cap: </span>@Model.Market_Cap_Rank</h3>
+                <input hidden asp-for="@Model.Market_Cap_Rank" />
+                <h3 class="fw-normal fst-italic"><span class="fw-bold">Price: </span>@Model.Price_In_Usd</h3>
+                <input hidden asp-for="@Model.Price_In_Usd" />
+                <h3 class="fw-normal fst-italic"><span class="fw-bold">High: </span>@Model.Usd_High_24H</h3>
+                <input hidden asp-for="@Model.Usd_High_24H" />
+                <h3 class="fw-normal fst-italic"><span class="fw-bold">Low: </span>@Model.Usd_Low_24H</h3>
+                <input hidden asp-for="@Model.Usd_Low_24H" />
+            </div>
         </div>
+
+
+
+        
+
+        <input type="submit" class="btn btn-danger" value="Save" />
     </div>
-    
-
-
-</div>
+</form>
