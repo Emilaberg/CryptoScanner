@@ -19,23 +19,27 @@ namespace CryptoScanner.App.Services
             return await cryptoRepo.GetAllCryptosAsync();
 
         }
-        public async Task<CryptoModel> GetCryptoByIdAsync(int id)
+        public async Task<CryptoModel?> GetCryptoByIdAsync(int id)
         {
 
             return await cryptoRepo.GetCryptoByIdAsync(id);
         }
-
-        public async Task<string> AddCryptoToDb(CryptoModel newCrypto)
+        public async Task<CryptoModel?> GetCryptoByNameAsync(string name)
         {
-            CryptoModel exits = await GetCryptoByIdAsync(newCrypto.Id);
+
+            return await cryptoRepo.GetCryptoByNameAsync(name);
+        }
+
+        public async Task<string?> AddCryptoToDb(CryptoModel newCrypto)
+        {
+            CryptoModel? exits = await GetCryptoByNameAsync(newCrypto.Name);
 
 
             if (exits != null)
             {
-                return "crypto already exits";
+                return null;
             }
             await cryptoRepo.AddCryptoAsync(newCrypto);
-
             return "success";
         }
 
