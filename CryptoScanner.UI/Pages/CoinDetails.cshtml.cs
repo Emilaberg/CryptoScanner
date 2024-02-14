@@ -72,13 +72,17 @@ namespace CryptoScanner.UI.Pages
 
 
 
-            string returnstring = await scanner.AddCryptoToDb(newCrypto);
-            if (returnstring == "success")
+
+            if (await scanner.AddCryptoToDb(newCrypto) == null)
+            {
+                return Page();
+            }
+            else
             {
                 return RedirectToPage("/index");
+
             }
 
-            return Page();
 
             //}
             //public async Task GetCrypto()

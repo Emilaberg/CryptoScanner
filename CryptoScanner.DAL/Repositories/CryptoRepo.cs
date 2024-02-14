@@ -12,9 +12,14 @@ namespace CryptoScanner.DAL.Repositories
             this.context = context;
         }
 
-        public async Task<CryptoModel> GetCryptoByIdAsync(int id)
+        public async Task<CryptoModel?> GetCryptoByIdAsync(int id)
         {
             return await context.Cryptos.FirstOrDefaultAsync(c => c.Id == id);
+        }
+
+        public async Task<CryptoModel?> GetCryptoByNameAsync(string name)
+        {
+            return await context.Cryptos.FirstOrDefaultAsync(c => c.Name == name);
         }
 
         public async Task<List<CryptoModel>> GetAllCryptosAsync()
